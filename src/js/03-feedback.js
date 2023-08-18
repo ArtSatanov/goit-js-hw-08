@@ -7,36 +7,39 @@ const refs = {
    textarea: document.querySelector('textarea'),
 };
 
-console.log(refs.form);
-console.log(refs.email);
-console.log(refs.textarea);
-
 const formData = {};
+refs.form.addEventListener('input', onInputEvent);
+refs.form.addEventListener('submit', onSubmit);
 
-refs.textarea.addEventListener('input', onTextarea);
-refs.email.addEventListener('input', onTextarea);
+// refs.textarea.addEventListener('input', onTextarea);
+// refs.email.addEventListener('input', onTextarea);
+
+function onInputEvent(e) {
+   if (e.target.nodeName === 'INPUT') {
+      console.log('Input', e.target.value);
+      formData.email = e.target.value;
+   }
+  if (e.target.nodeName === 'TEXTAREA') {
+     console.log('text area', e.target.value);
+     formData.message = e.target.value;
+   } 
+   localStorage.setItem('feedback-form-state',JSON.stringify(formData));
+};
+
+function onSubmit(e) {
+   e.preventDefault();
+   const savedData = localStorage.getItem('feedback-form-state');
+   const parsedData = JSON.parse(savedData);
+   console.log(parsedData);
+
+};
+
+// function onClick(e) { 
+//    console.log('target>>>', e.target.name, e.target.nodeName);
+//    console.log('currenttarget>>>', e.currentTarget);
+// }  
 
 
-function onTextarea(e) {
-   const value = e.target.value;
-   // console.log(value);
-   formData.msg = value;
-}
-
-function onClick(e) { 
-   console.log('target>>>', e.target.name);
-   console.log('currenttarget>>>', e.currentTarget.name);
-}  
-
-refs.form.addEventListener('click', onClick);
 
 
-// const formDataSave = function (email, message) { 
-//    const formData = [];
-//    formData.push(email, message);
-//    console.log(formData);
-//    // if (!fromEmailEl.value && ) { }
-//    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-// };
 
-// formEl.addEventListener('input', formDataSave(fromEmailEl.value, fromMsgEl.value));
