@@ -26,8 +26,10 @@ function onSubmit(e) {
    e.preventDefault();
    const savedData = localStorage.getItem('feedback-form-state');
    const parsedData = JSON.parse(savedData);
+  
    localStorage.removeItem('feedback-form-state');
    e.currentTarget.reset();
+   return savedData;
 };
 
 function dataOutput() {
