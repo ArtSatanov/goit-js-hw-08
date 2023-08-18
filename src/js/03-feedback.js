@@ -23,9 +23,12 @@ function onTextarea(e) {
    formData.msg = value;
 }
 
-console.log(formData);  
+function onClick(e) { 
+   console.log('target>>>', e.target.name);
+   console.log('currenttarget>>>', e.currentTarget.name);
+}  
 
-
+refs.form.addEventListener('click', onClick);
 
 
 // const formDataSave = function (email, message) { 
