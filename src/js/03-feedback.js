@@ -15,6 +15,13 @@ refs.form.addEventListener('submit', onSubmit);
 // refs.email.addEventListener('input', onTextarea);
 
 function onInputEvent(e) {
+   if (localStorage.getItem('feedback-form-state')) {
+      const savedData = localStorage.getItem('feedback-form-state');
+      const parsedData = JSON.parse(savedData);
+      refs.email.value = formData.email ?? [];
+      refs.textarea.value = formData.message ?? [];
+   }
+
    if (e.target.nodeName === 'INPUT') {
       console.log('Input', e.target.value);
       formData.email = e.target.value;
@@ -32,6 +39,7 @@ function onSubmit(e) {
    const parsedData = JSON.parse(savedData);
    console.log(parsedData);
    localStorage.removeItem('eedback-form-state');
+   e.currentTarget.reset();
 };
 
 
