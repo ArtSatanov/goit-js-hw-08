@@ -31,13 +31,9 @@ function onSubmit(e) {
    const savedData = localStorage.getItem('feedback-form-state');
    const parsedData = JSON.parse(savedData);
    console.log(parsedData);
-
+   localStorage.removeItem('eedback-form-state');
 };
 
-// function onClick(e) { 
-//    console.log('target>>>', e.target.name, e.target.nodeName);
-//    console.log('currenttarget>>>', e.currentTarget);
-// }  
 
 
 
